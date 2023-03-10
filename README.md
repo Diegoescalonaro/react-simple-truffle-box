@@ -4,6 +4,8 @@ This simple box comes with everything you need to start using Truffle to write, 
 
 ## Installation
 
+Prerequisites: Node (> v16 LTS) and Git
+
 First ensure you are in an empty directory.
 
 Run the `unbox` command using 1 of 2 ways.
