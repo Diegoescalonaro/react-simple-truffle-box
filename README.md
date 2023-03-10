@@ -31,14 +31,14 @@ truffle develop
 3. Compile and migrate the smart contracts. Running migrate will do both. Note inside the development console we don't have to preface commands with truffle.
 
 ```sh
-truffle compile
-truffle migrate
+compile
+migrate
 ```
 
 3. OPTIONAL: You can run tests written in Solidity or JavaScript against your smart contracts.
 
 ```sh
-truffle test
+test
 ```
 
 4. In the client directory, we run the React app. 
