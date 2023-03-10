@@ -56,3 +56,35 @@ npm run build
 ```
 
 From there, follow the instructions on the hosted React app. It will walk you through using Truffle and Ganache to deploy the `SimpleStorage` contract, making calls to it, and sending transactions to change the contract's state.
+
+
+
+## Deployment on public testnet
+
+To deploy your contracts to a public network (such as a testnet or mainnet) there are two approaches. The first uses Truffle Dashboard which provides "an easy way to use your existing MetaMask wallet for your deployments". The second, requires copying your private key or mnemonic into your project so the deployment transactions can be signed prior to submission to the network.
+
+### Using Truffle Dashboard (recommended)
+
+Truffle Dashboard ships with Truffle and can be started with truffle dashboard. This in turn loads the dashboard at http://localhost:24012 and beyond that you'll just need to run your migration (truffle migrate --network dashboard). A more detailed guide to using Truffle Dashboard is available here.
+
+### Using the env file and Infura
+
+You will need at least one mnemonic to use with the network. The .dotenv npm package has been installed for you, and you will need to create a .env file for storing your mnemonic and any other needed private information.
+
+The .env file is ignored by git in this project, to help protect your private data. In general, it is good security practice to avoid committing information about your private keys to github. The truffle-config.js file expects a MNEMONIC value to exist in .env for running commands on each of these networks, as well as a default MNEMONIC for the Arbitrum network we will run locally.
+
+If you are unfamiliar with using .env for managing your mnemonics and other keys, the basic steps for doing so are below:
+
+1. Use touch .env in the command line to create a .env file at the root of your project.
+2. Open the .env file in your preferred IDE 
+3. Add the following, filling in your own Infura project key and mnemonics:
+
+```sh
+MNEMONIC="<YOUR MNEMONIC HERE>"
+INFURA_KEY="<Your Infura Project ID>"
+RINKEBY_MNEMONIC="<Your Rinkeby Mnemonic>"
+MAINNET_MNEMONIC="<Your Mainnet Mnemonic>"
+MAINNET_MNEMONIC="<Your Mainnet Mnemonic>"
+```
+  
+4. As you develop your project, you can put any other sensitive information in this file. You can access it from other files with require('dotenv').config() and refer to the variable you need with process.env['<YOUR_VARIABLE>'].
