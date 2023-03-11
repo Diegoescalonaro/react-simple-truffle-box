@@ -3,3 +3,10 @@
   margin: auto;
   text-align: left;
 }
+
+.App-no-web3 {
+  width: 60%;
+  margin: auto;
+  text-align: left;
+  margin-top: 40px;
+}
