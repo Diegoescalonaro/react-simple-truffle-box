@@ -29,20 +29,20 @@ npx truffle unbox Diegoescalonaro/react-simple-truffle-box
 npx ganache-cli
 ```
 
-2. Compile and migrate the smart contracts. Running migrate will do both. Note inside the development console we don't have to preface commands with truffle.
+2. Compile and migrate the smart contracts. Running migrate will do both. Note inside the development console we don't have to preface commands with truffle. Check `/migrations` folder.
 
 ```sh
 truffle compile
 truffle migrate --network ganache
 ```
 
-3. OPTIONAL: You can run tests written in Solidity or JavaScript against your smart contracts
+3. OPTIONAL: You can run tests written in Solidity or JavaScript against your smart contracts. Check `/tests` folder.
 
 ```sh
 truffle test
 ```
 
-4. OPTIONAL: You can run custom scripts against your smart contracts
+4. OPTIONAL: You can run custom scripts against your smart contracts. Check `/scripts` folder.
 ```sh
 truffle exec scripts/increment.js
 ```
@@ -57,7 +57,7 @@ truffle exec scripts/increment.js
 <img width="374" alt="Screenshot 2023-03-14 at 23 00 24" src="https://user-images.githubusercontent.com/26909731/225151437-a61de8f3-f6ce-4e4a-9e41-cd8ee6c98fb5.png">
 
 
-2. In the client directory, we run the React app. 
+2. In the `/client` directory, we run the React app. 
 
 ```sh
 cd client
