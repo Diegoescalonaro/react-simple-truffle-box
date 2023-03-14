@@ -11,6 +11,6 @@
 		"Build app for production": "cd client && npm run build"
 	},
 	"hooks": {
-		"post-unpack": "cd client && npm ci --legacy-deps"
+		"post-unpack": "npm i && cd client && npm ci --legacy-deps"
 	}
 }

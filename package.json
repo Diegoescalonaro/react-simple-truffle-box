@@ -1,0 +1,26 @@
+{
+  "name": "react-simple-truffle-box",
+  "version": "1.0.0",
+  "description": "This simple box comes with everything you need to start using Truffle to write, compile, test, and deploy smart contracts, and interact with them from a React app.",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ganache": "ganache --wallet.seed myCustomSeed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Diegoescalonaro/react-simple-truffle-box.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Diegoescalonaro/react-simple-truffle-box/issues"
+  },
+  "homepage": "https://github.com/Diegoescalonaro/react-simple-truffle-box#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }
+}
