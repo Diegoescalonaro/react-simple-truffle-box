@@ -21,24 +21,24 @@ truffle unbox Diegoescalonaro/react-simple-truffle-box
 npx truffle unbox Diegoescalonaro/react-simple-truffle-box
 ```
 
-2. Now run the development console. This will spin up and allow you to interact with ganache, a local test chain on localhost:9545
+2. Now run the Ganache local network. You can execute the command below or just run the Ganache UI. This will spin up and allow you to interact with ganache, a local test chain on localhost:8545
 
 ```sh
-truffle develop
+npx ganache-cli
 
 ```
 
 3. Compile and migrate the smart contracts. Running migrate will do both. Note inside the development console we don't have to preface commands with truffle.
 
 ```sh
-compile
-migrate
+truffle compile
+truffle migrate
 ```
 
 3. OPTIONAL: You can run tests written in Solidity or JavaScript against your smart contracts.
 
 ```sh
-test
+truffle test
 ```
 
 4. In the client directory, we run the React app. 
