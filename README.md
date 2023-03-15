@@ -77,7 +77,7 @@ From there, follow the instructions on the hosted React app. It will walk you th
 ## Customize DApp based on Auction.sol [Auction.sol]("https://github.com/Diegoescalonaro/auction-smartcontract")
 
 <details>
-<summary>Context information 🤓</summary>
+<summary>CONTEXT Information 🤓</summary>
 
 ```js
 // Use web3 to get the user's accounts.
@@ -124,7 +124,7 @@ this.handleMetamaskEvent()
 </details>
 
 <details>
-<summary>Get methods 📖 </summary>
+<summary>GET Methods 📖 </summary>
 
 ```js
 // ------------ GET AUCTION INFORMATION FUNCTION ------------
@@ -189,7 +189,7 @@ getAuctionInformation = async () => {
 </details>
 
 <details>
-<summary>Set methods 🖊️ </summary>
+<summary>SET Methods 🖊️ </summary>
 
 ```js
 // ------------ BID FUNCTION ------------
