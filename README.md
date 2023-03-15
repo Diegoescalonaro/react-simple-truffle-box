@@ -123,6 +123,18 @@ this.handleMetamaskEvent()
 ```
 </details>
 
+
+<details>
+<summary>SMART CONTRACT configuration ⚙️ </summary>
+
+```js
+const CONTRACT_ADDRESS = require("../contracts/Auction.json").networks[1337].address
+const CONTRACT_ABI = require("../contracts/Auction.json").abi;
+  
+const contract = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS);
+```
+</details>
+
 <details>
 <summary>GET Methods 📖 </summary>
 
