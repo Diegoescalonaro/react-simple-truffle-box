@@ -74,6 +74,178 @@ npm run build
 From there, follow the instructions on the hosted React app. It will walk you through using Truffle and Ganache to deploy the `SimpleStorage` contract, making calls to it, and sending transactions to change the contract's state.
 
 
+## Customize DApp based on Auction.sol [Auction.sol]("https://github.com/Diegoescalonaro/auction-smartcontract")
+
+<details>
+<summary>Context information 🤓</summary>
+
+```js
+// Use web3 to get the user's accounts.
+const accounts = await web3.eth.getAccounts();
+
+// Get the network ID
+const networkId = await web3.eth.net.getId();
+
+// Set data as a component state
+this.setState({accounts, networkId})
+```
+
+```js
+{/* ---- Context Information: Account & Network ---- */}
+<div className="Auction-header">
+    <div className="Header-context-information">
+      <p> Network connected: {this.state.networkId}</p>
+      <p> Your address: {this.state.accounts[0]}</p>
+    </div>
+</div>
+```
+
+```js
+// --------- METAMASK EVENTS ---------
+  handleMetamaskEvent = async () => {
+    window.ethereum.on('accountsChanged', function (accounts) {
+      // Time to reload your interface with accounts[0]!
+      alert("Incoming event from Metamask: Account changed 🦊")
+      window.location.reload()
+    })
+
+    window.ethereum.on('networkChanged', function (networkId) {
+      // Time to reload your interface with the new networkId
+      alert("Incoming event from Metamask: Network changed 🦊")
+      window.location.reload()
+    })
+  }
+```
+
+```js
+// --------- TO LISTEN TO EVENTS AFTER EVERY COMPONENT MOUNT ---------
+this.handleMetamaskEvent()
+```
+</details>
+
+<details>
+<summary>Get methods 📖 </summary>
+
+```js
+// ------------ GET AUCTION INFORMATION FUNCTION ------------
+getAuctionInformation = async () => {
+  const { accounts, contract } = this.state;
+
+  // Get the auction information
+  const response = await contract.methods.getAuctionInfo().call({ from: accounts[0] });
+  this.setState({ auctionInfo: response })
+
+  // Get the highest price and bidder, and the status of the auction
+  const imageURI = await contract.methods.getImageURI().call();
+  const highestPrice = await contract.methods.getHighestPrice().call();
+  const highestBidder = await contract.methods.getHighestBidder().call();
+  const basePrice = await contract.methods.getBasePrice().call();
+  const originalOwner = await contract.methods.originalOwner().call();
+  const newOwner = await contract.methods.newOwner().call();
+  const isActive = await contract.methods.isActive().call();
+  this.setState({ imageURI, highestPrice, highestBidder, basePrice, originalOwner, newOwner, isActive })
+}
+```
+
+```js
+{/* ---- Auction information ---- */}
+<div className="Auction-component-1">
+  <div className="Auction-component-body">
+    <h2 id="inline">Auction information</h2>
+    <button id="button-call" onClick={this.getAuctionInformation}> GET INFORMATION</button>
+    {
+      this.state.auctionInfo &&
+      <>
+        <div className="Auction-information">
+          {/* Auction Image */}
+          <div className="Auction-information-img">
+            {this.state.imageURI && <img src={this.state.imageURI}></img>}
+            {this.state.imageURI && <p><u>Descargar imágen</u> &nbsp;&nbsp; <u>Solicitar más imágenes</u></p>}
+          </div>
+          {/* Auction information */}
+          <div className="Auction-information-text">
+
+            {/* Auction Description */}
+            <p>{this.state.auctionInfo[0]}</p>
+
+            {/* Basic Information */}
+            <p><b>Status: </b>{this.state.isActive ? "The auction is still active!! 🤩 🤩" : "The auction is not longer active 😭 😭"}</p>
+            <p><b>Created at:</b> {this.state.auctionInfo[1]}</p>
+            <p><b>Duration:</b> {this.state.auctionInfo[2]} seconds</p>
+
+            {/* More information */}
+            {this.state.highestBidder && <p><b>Highest Bidder:</b> {this.state.highestBidder}</p>}
+            {this.state.highestPrice && <p><b>Highest Price:</b> {this.state.web3Provider.utils.fromWei(this.state.highestPrice, 'ether')} ether</p>}
+            {this.state.basePrice && <p><b>Base price:</b> {this.state.basePrice}</p>}
+            {this.state.originalOwner && <p><b>Original Owner:</b> {this.state.originalOwner}</p>}
+            {this.state.newOwner && <p><b>New Owner:</b> {this.state.newOwner}</p>}
+          </div>
+        </div>
+      </>
+    }
+  </div>
+</div>
+```
+</details>
+
+<details>
+<summary>Set methods 🖊️ </summary>
+
+```js
+// ------------ BID FUNCTION ------------
+bid = async () => {
+  const { accounts, contract } = this.state;
+
+  // Bid at an auction for X value
+  await contract.methods.bid().send({ from: accounts[0], value: this.state.value });
+
+  // Get the new values: highest price and bidder, and the status of the auction
+  const highestPrice = await contract.methods.getHighestPrice().call();
+  const highestBidder = await contract.methods.getHighestBidder().call();
+  const isActive = await contract.methods.isActive().call();
+
+  // Update state with the result.
+  this.setState({ isActive: isActive, highestPrice, highestBidder });
+};
+
+// ------------ STOP AUCTION FUNCTION ------------
+stopAuction = async () => {
+  const { accounts, contract } = this.state;
+
+  // Stop the auction
+  await contract.methods.stopAuction().send({ from: accounts[0] });
+
+  // Get the new values: isActive and newOwner
+  const isActive = await contract.methods.isActive().call();
+  const newOwner = await contract.methods.newOwner().call();
+
+  // Update state with the result.
+  this.setState({ isActive, newOwner });
+}
+```
+
+```js
+{/* ---- Auction actions ---- */}
+<div className="Auction-component-2">
+  <div className="Auction-component-body">
+    <div className="Auction-actions">
+      <h2>Auction actions</h2>
+
+      {/* Input & Button to bid */}
+      <input placeholder="Insert value in wei" onChange={(e) => this.setState({ value: e.target.value })}></input>
+      <button id="button-send" onClick={this.bid}>BID</button>
+
+      {/* Button to stop auction */}
+      <button id="button-send" onClick={this.stopAuction}>STOP AUCTION</button>
+
+      {/* Helper to convert wei to ether */}
+      {this.state.value && <p>You're gonna bid: {this.state.web3Provider.utils.fromWei(this.state.value, 'ether')} ether</p>}
+    </div>
+  </div>
+</div>
+```
+</details>
+
 ## Deployment on public testnet
 
 To deploy your contracts to a public network (such as a testnet or mainnet) there are two approaches. The first uses Truffle Dashboard which provides "an easy way to use your existing MetaMask wallet for your deployments". The second, requires copying your private key or mnemonic into your project so the deployment transactions can be signed prior to submission to the network.
