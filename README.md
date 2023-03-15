@@ -74,7 +74,7 @@ npm run build
 From there, follow the instructions on the hosted React app. It will walk you through using Truffle and Ganache to deploy the `SimpleStorage` contract, making calls to it, and sending transactions to change the contract's state.
 
 
-## Customize DApp based on Auction.sol [Auction.sol]("https://github.com/Diegoescalonaro/auction-smartcontract")
+## Customize DApp based on [Auction.sol]("https://github.com/Diegoescalonaro/auction-smartcontract")
 
 <details>
 <summary>CONTEXT Information 🤓</summary>
