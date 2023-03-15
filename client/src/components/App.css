@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400&display=swap');
+
 .App {
-  width: 60%;
+  width: 100%;
   margin: auto;
   text-align: left;
+  font-family: 'Raleway', sans-serif;
 }
 
 .App-no-web3 {
@@ -9,4 +12,183 @@
   margin: auto;
   text-align: left;
   margin-top: 40px;
+}
+
+.App-simplestorage-example{
+  width:80%;
+  margin:auto;
+}
+
+/* ------------------------------------------------------------ */
+/* -------------------- AUCTION HEADER STYLE ------------------ */
+/* ------------------------------------------------------------ */
+
+.Auction-header {
+  background-color: white;
+  border-bottom: 0.5px solid grey;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.Header-context-information {
+  width: 80%;
+  margin: auto;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.Header-context-information p {
+  flex: auto;
+  margin: 5px;
+  font-size: medium
+}
+
+.Header-switch-network {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+.Header-switch-network p {
+  font-size: medium
+}
+
+.Header-switch-network button {
+  width: 160px;
+  height: 32px;
+  background: transparent;
+}
+
+.Header-switch-network button:hover {
+  width: 160px;
+  height: 32px;
+  background: beige;
+  color: black;
+  box-shadow: 0px 8px 15px #EDEDED;
+}
+
+/* ------------------------------------------------------------ */
+/* -------------------- AUCTION BODY STYLE ------------------ */
+/* ------------------------------------------------------------ */
+
+.Auction-body {
+  background-color: #EDEDED;
+  padding-top: 50px;
+  padding-bottom: 100px;
+  min-height: 90vh;
+}
+
+.Auction-body-components {
+  width:80%;
+  margin:auto;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.Auction-information {
+  width: 100%;
+  margin: auto;
+  margin-top: 40px;
+  text-align: left;
+  display: flex;
+  flex-direction:row-reverse;
+  flex-wrap: wrap;
+}
+
+.Auction-information-img {
+  flex: 1;
+  align-self: center;
+}
+
+.Auction-information-img img {
+  width:420px;
+}
+
+.Auction-information-text {
+  flex: 2;
+  margin-left: 10px;
+  font-size:15px;
+}
+
+.Auction-information-text b{
+  color:darkslategrey;
+}
+
+/* ------------------------------------------------------------ */
+/* ----------------------- OTHER STYLE ------------------------ */
+/* ------------------------------------------------------------ */
+
+button {
+  padding: 8px;
+  width: 20%;
+  min-width:200px;
+  max-width: 250px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#button-call {
+  background-color: #365f7c;
+  color: white;
+}
+
+#button-call:hover {
+  color: #fff;
+  background-color: #2a4b62;
+  border-color: #264459;
+}
+
+#button-call:focus {
+  box-shadow: 0 0 0 0.2rem rgb(83 119 145 / 50%);
+}
+
+#button-send {
+  background-color: #b84040;
+  color: white;
+  min-width:120px;
+  max-width:150px;
+  margin-left: 2px;
+}
+
+#button-send:hover {
+  color: #fff;
+  background-color: #9c3636;
+  border-color: #923333;
+}
+
+#button-send:focus, #button-send:active {
+  box-shadow: 0 0 0 0.2rem rgb(195 93 93 / 50%);
+}
+
+.Auction-actions {
+  width: 100%;
+  margin: auto;
+}
+
+.Auction-actions input {
+  width: 50%;
+  padding: 8px;
+  min-width:200px;
+  max-width: 400px;
+  text-align: center;
+  font-size: 15px;
+}
+
+#inline {
+  display: inline;
+  margin-right: 30px;
 }
