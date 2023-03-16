@@ -258,6 +258,95 @@ stopAuction = async () => {
 ```
 </details>
 
+## Advanced customization
+
+<details>
+<summary>Switch network (MetaMask) ➡️ </summary>
+
+```js
+// ------------ METAMASK SWITCH NETWORK ------------
+switchNetwork = async () => {
+  try {
+    await window.ethereum.request({
+      method: 'wallet_switchEthereumChain',
+      params: [
+        {
+          chainId: this.state.web3Provider.utils.toHex(5)
+        }
+      ]
+    });
+  } catch (switchError) {
+    if (switchError.code === 4902) {
+      try {
+        await window.ethereum.request({
+          method: 'wallet_addEthereumChain',
+          params: [
+            {
+              chainId: this.state.web3Provider.utils.toHex(5),
+              chainName: 'Goerli',
+              rpcUrls: ['https://goerli.infura.io/v3/'],
+            },
+          ],
+        });
+      } catch (addError) {
+        console.log(addError)
+      }
+    }
+  }
+}
+```
+
+```js
+{this.state.networkId !== 5 && <p id="inline">This DAPP is currently working on GOERLI, please press the button</p>}
+{this.state.networkId !== 5 && <button onClick={this.switchNetwork}>Switch to GOERLI</button>}
+```
+
+</details>
+
+<details>
+<summary>Sign message (MetaMask) ✍️ </summary>
+
+```js
+// ------------ SIGN WITH METAMASK ------------
+signMessage = async () => {
+  const { accounts, web3Provider } = this.state;
+  var signature = await web3Provider.eth.personal.sign("Esto es un mensaje que quiero firmar", accounts[0])
+  this.setState({ signature: signature, signer: accounts[0] });
+}
+```
+
+```js
+{this.state.networkId !== 5 && <p id="inline">This DAPP is currently working on GOERLI, please press the button</p>}
+{this.state.networkId !== 5 && <button onClick={this.switchNetwork}>Switch to GOERLI</button>}
+```
+
+</details>
+
+<details>
+<summary>Smart Contract event listener 👂 </summary>
+
+```js
+// --------- SMART CONTRACT EVENTS ---------
+handleContractEvent = async () => {
+  if (!this.state.contract) return
+  this.state.contract.events.Status([])
+    .on("connected", function (subscriptionId) {
+      console.log("New subscription with ID: " + subscriptionId)
+    })
+    .on('data', function (event) {
+      console.log("New event: %o", event)
+      alert("New Highest BID 🤑 💰 💸")
+    })
+}
+```
+
+```js
+// --------- TO LISTEN TO EVENTS AFTER EVERY COMPONENT UPDATE ---------
+this.handleContractEvent()
+```
+
+</details>
+
 ## Deployment on public testnet
 
 To deploy your contracts to a public network (such as a testnet or mainnet) there are two approaches. The first uses Truffle Dashboard which provides "an easy way to use your existing MetaMask wallet for your deployments". The second, requires copying your private key or mnemonic into your project so the deployment transactions can be signed prior to submission to the network.
