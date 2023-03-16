@@ -331,8 +331,12 @@ signMessage = async () => {
 ```
 
 ```js
-{this.state.networkId !== 5 && <p id="inline">This DAPP is currently working on GOERLI, please press the button</p>}
-{this.state.networkId !== 5 && <button onClick={this.switchNetwork}>Switch to GOERLI</button>}
+{/* Button to sign a message (i.e. sign the bid) */}
+<button onClick={this.signMessage}>SIGN MESSAGE</button>
+<div style={{ overflowWrap: "anywhere" }}>
+  {this.state.signature && <p>Signed message: {this.state.signature}</p>}
+  {this.state.signer && <p>Signer address: {this.state.signer}</p>}
+</div>
 ```
 
 </details>
