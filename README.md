@@ -346,17 +346,22 @@ signMessage = async () => {
 
 ```js
 // --------- SMART CONTRACT EVENTS ---------
-handleContractEvent = async () => {
-  if (!this.state.contract) return
-  this.state.contract.events.Status([])
-    .on("connected", function (subscriptionId) {
-      console.log("New subscription with ID: " + subscriptionId)
-    })
-    .on('data', function (event) {
-      console.log("New event: %o", event)
-      alert("New Highest BID 🤑 💰 💸")
-    })
-}
+  handleContractEvent = async () => {
+    if (!this.state.contract) return
+    this.state.contract.events.allEvents()
+      .on("connected", function (subscriptionId) {
+        console.log("New subscription with ID: " + subscriptionId)
+      })
+      .on('data', function (event) {
+        console.log("New event: %o", event)
+        if (event.event == "Result") {
+          alert("The auction has finished  💰 💸")
+        }
+        if (event.event == "Status") {
+          alert("New Highest BID 🤑 💰 💸")
+        }
+      })
+  }
 ```
 
 ```js
