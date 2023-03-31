@@ -4,7 +4,7 @@ This simple box comes with everything you need to start using Truffle to write, 
 
 ## Installation
 
-Prerequisites: Node (> v16 LTS) and Git
+⚙️ **Prerequisites: Node (> v16 LTS), Git, NPM, Truffe, MetaMaske**
 
 1. First ensure you are in an empty directory.
 
