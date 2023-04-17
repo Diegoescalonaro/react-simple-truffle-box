@@ -4,7 +4,9 @@ This simple box comes with everything you need to start using Truffle to write, 
 
 ## Installation
 
-⚙️ **Prerequisites: Node (> v16 LTS), Git, NPM, Truffe, MetaMask**
+⚙️ **Prerequisites: Node (v16 LTS recommended), Git, NPM, Truffe, MetaMask**
+
+</details>
 
 1. First ensure you are in an empty directory.
 
@@ -64,6 +66,38 @@ cd client
 npm start
   Starting the development server...
 ```
+
+<details>
+<summary> 🚨⚠️ Possible errors running the client app </summary>
+<br/>
+
+- 🚨 Incompatibility with NodeJS version: v18 or higher 
+
+If your nodejs version is v18 or higher, sometimes when trying to run the client app an error is thrown: ```error:0308010C:digital envelope routines::unsupported```. In this case, you can downgrade to nodejs v16 or follow the steps below:
+
+1. Set an env variable: ```NODE_OPTIONS````
+
+For Windows (run in terminal): ```set NODE_OPTIONS=--openssl-legacy-provider```
+For Unix (run in terminal): ```export NODE_OPTIONS=--openssl-legacy-provider```
+
+2. Modify the client package file: ```package.json``` 
+
+Change "start": "react-scripts start" --- to --->  "start": "react-scripts --openssl-legacy-provider start"
+
+3. Run the app again: ```npm start```
+
+- 🚨 Not configured NetworkID on App.js
+
+If your client app is running but the browser at localhost:3000 is showing the following error: ```Cannot read properties of undefined (reading 'address')"```. You must check that the NetworkID in the ```App.js``` file is configured according to the network you're using (used in the SimpleStorage.json compiled contract file.
+
+
+
+Set te NetworkID here (in ```App.js```) 👇
+```js
+const CONTRACT_ADDRESS = require("../contracts/SimpleStorage.json").networks[1337].address
+```
+</details>
+<br/>
 
 3. OPTIONAL: Build the application for production using the build script. A production build will be in the `dist/` folder  🔎
 ```sh
